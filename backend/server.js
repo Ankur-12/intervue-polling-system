@@ -5,7 +5,16 @@ const { Server } = require("socket.io");
 const pollState = require("./polls");
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://intervue-polling-system-alpha.vercel.app"
+    ],
+    methods: ["GET", "POST"],
+  })
+);
+
 app.use(express.json());
 app.get("/", (req, res) => {
   res.send("Server is running");
